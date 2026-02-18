@@ -1,0 +1,11 @@
+/public
+  - manifest.json
+  - icon-192.png  (You'll need to add any 192x192 image here)
+  - icon-512.png  (You'll need to add any 512x512 image here)
+/src
+  - App.jsx
+  - main.jsx
+  - sw-register.js
+index.html
+package.json
+vite.config.js
