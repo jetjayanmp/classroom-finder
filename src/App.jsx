@@ -1,11 +1,33 @@
+// Add this at the top of App.jsx
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient('https://ryqqxzyqvlynbrqifnst.supabase.co', 'sb_publishable_8tWrY-OfWsBBR8_PbErCjQ_dw7g65sL')
+
+// Inside your App component, change handleLogin:
+const handleLogin = async (e) => {
+  e.preventDefault();
+  
+  // Search Supabase for the student ID
+  const { data, error } = await supabase
+    .from('schedules')
+    .select('*')
+    .eq('student_id', studentId)
+    .single();
+
+  if (data) {
+    setSchedule(data);
+  } else {
+    alert("Student ID not found!");
+  }
+};
 import React, { useState } from 'react';
 
 export default function App() {
   const [studentId, setStudentId] = useState('');
   const [schedule, setSchedule] = useState(null);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+ const handleLogin = async (e) => {
+  e.preventDefault();
     // Simulate fetching from backend
     setSchedule({
       module: "Advanced UX Design",
